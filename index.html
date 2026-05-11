@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page Title -->
+    <title>APEX Fitness — Home</title>
+
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="APEX Fitness — Elevate your body, conquer your limits. Premium gym programs including Cardio, Strength Training, and Yoga.">
+
+    <!-- ============================
+         FAVICON — Replace the href below with your own favicon file path
+         ============================ -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Google Fonts: Oswald & Bebas Neue for headings, Poppins for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+         HEADER / NAVIGATION BAR
+         Logo on the left — Navigation links (with dropdowns) on the right
+         ============================================================ -->
+    <header id="main-header">
+        <nav id="navbar" class="navbar">
+
+            <!-- ---------- Logo ---------- -->
+            <a href="index.html" class="logo" id="logo">
+                APEX<span class="logo-accent">.</span>
+            </a>
+
+            <!-- Hamburger button for mobile -->
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- ---------- Navigation Links ---------- -->
+            <ul class="nav-links" id="nav-links">
+
+                <!-- Home (no dropdown) -->
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                </li>
+
+                <!-- About — with dropdown -->
+                <li class="nav-item dropdown" id="dropdown-about">
+                    <a href="templates/about.html" class="nav-link dropdown-toggle">About <span class="arrow">&#9662;</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="templates/about.html#our-story">Our Story</a></li>
+                        <li><a href="templates/about.html#mission">Mission</a></li>
+                        <li><a href="templates/about.html#team">Our Team</a></li>
+                    </ul>
+                </li>
+
+                <!-- Booking — with dropdown -->
+                <li class="nav-item dropdown" id="dropdown-booking">
+                    <a href="templates/booking.html" class="nav-link dropdown-toggle">Booking <span class="arrow">&#9662;</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="templates/booking.html#personal-training">Personal Training</a></li>
+                        <li><a href="templates/booking.html#group-classes">Group Classes</a></li>
+                        <li><a href="templates/booking.html#trial-session">Free Trial</a></li>
+                    </ul>
+                </li>
+
+                <!-- Programs — with dropdown -->
+                <li class="nav-item dropdown" id="dropdown-programs">
+                    <a href="templates/programs.html" class="nav-link dropdown-toggle">Programs <span class="arrow">&#9662;</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="templates/programs.html#cardio">Cardio</a></li>
+                        <li><a href="templates/programs.html#strength">Strength</a></li>
+                        <li><a href="templates/programs.html#yoga">Yoga</a></li>
+                    </ul>
+                </li>
+
+                <!-- Gallery — with dropdown -->
+                <li class="nav-item dropdown" id="dropdown-gallery">
+                    <a href="templates/gallery.html" class="nav-link dropdown-toggle">Gallery <span class="arrow">&#9662;</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="templates/gallery.html#gym-photos">Gym Photos</a></li>
+                        <li><a href="templates/gallery.html#events">Events</a></li>
+                        <li><a href="templates/gallery.html#transformations">Transformations</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+            <!-- End nav-links -->
+
+        </nav>
+    </header>
+    <!-- End Header -->
+
+
+    <!-- ============================================================
+         HERO SECTION
+         Full-width, dark background, large heading, sub-text, 2 CTA buttons
+         ============================================================ -->
+    <section id="hero" class="hero">
+
+        <!-- Dark overlay sits on top of any future background image -->
+        <div class="hero-overlay"></div>
+
+        <!-- Hero text content -->
+        <div class="hero-content">
+            <h1 class="hero-title">ELEVATE YOUR <span class="highlight">BODY</span></h1>
+            <p class="hero-subtitle">
+                Push beyond your limits. Join APEX Fitness and unlock your full potential
+                with world-class trainers, state-of-the-art equipment, and a community
+                that never quits.
+            </p>
+
+            <!-- Two call-to-action buttons -->
+            <div class="hero-buttons">
+                <a href="templates/booking.html" class="btn btn-primary" id="hero-btn-join">Join Now</a>
+                <a href="templates/programs.html" class="btn btn-outline" id="hero-btn-programs">Our Programs</a>
+            </div>
+        </div>
+
+    </section>
+    <!-- End Hero -->
+
+
+    <!-- ============================================================
+         FEATURES SECTION
+         Three cards displayed side-by-side: Cardio, Strength, Yoga
+         ============================================================ -->
+    <section id="features" class="features">
+
+        <!-- Section heading -->
+        <h2 class="section-title">What We <span class="highlight">Offer</span></h2>
+        <p class="section-subtitle">World-class programs tailored to every fitness level</p>
+
+        <!-- Cards container -->
+        <div class="cards-container">
+
+            <!-- Card 1 — Cardio -->
+            <div class="card" id="card-cardio">
+                <div class="card-icon">&#9829;</div>  <!-- Heart icon for cardio -->
+                <h3 class="card-title">Cardio</h3>
+                <p class="card-text">
+                    High-energy sessions designed to torch calories, boost endurance,
+                    and keep your heart in peak condition.
+                </p>
+                <a href="templates/programs.html#cardio" class="card-link">Learn More &rarr;</a>
+            </div>
+
+            <!-- Card 2 — Strength -->
+            <div class="card" id="card-strength">
+                <div class="card-icon">&#9883;</div>  <!-- Star icon for strength -->
+                <h3 class="card-title">Strength</h3>
+                <p class="card-text">
+                    Build raw power and sculpt lean muscle with guided strength programs
+                    for beginners to advanced lifters.
+                </p>
+                <a href="templates/programs.html#strength" class="card-link">Learn More &rarr;</a>
+            </div>
+
+            <!-- Card 3 — Yoga -->
+            <div class="card" id="card-yoga">
+                <div class="card-icon">&#9775;</div>  <!-- Yin-yang icon for yoga -->
+                <h3 class="card-title">Yoga</h3>
+                <p class="card-text">
+                    Find your balance. Our yoga classes improve flexibility, reduce stress,
+                    and build a stronger mind-body connection.
+                </p>
+                <a href="templates/programs.html#yoga" class="card-link">Learn More &rarr;</a>
+            </div>
+
+        </div>
+        <!-- End cards-container -->
+
+    </section>
+    <!-- End Features -->
+
+
+    <!-- ============================================================
+         FOOTER
+         Simple centered text
+         ============================================================ -->
+    <footer id="main-footer" class="footer">
+        <p>&copy; 2026 APEX Fitness. All rights reserved.</p>
+    </footer>
+    <!-- End Footer -->
+
+
+    <!-- ============================================================
+         JAVASCRIPT
+         Handles: mobile menu toggle + navbar scroll effect
+         ============================================================ -->
+    <script>
+        // ---- Mobile Hamburger Menu Toggle ----
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks   = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');       // show / hide menu
+            menuToggle.classList.toggle('active');    // animate hamburger → X
+        });
+
+        // ---- Navbar Background on Scroll ----
+        // When the user scrolls past 50px, the navbar gets a solid background
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ---- Mobile Dropdown Toggle ----
+        // On touch devices, tapping a dropdown parent toggles its menu
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            toggle.addEventListener('click', (e) => {
+                // Only prevent default on mobile (when hamburger is visible)
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('open');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

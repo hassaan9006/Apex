@@ -1,0 +1,617 @@
+/* =============================================================
+   APEX FITNESS — MAIN STYLESHEET
+   Color Scheme : Red (#E63946), Black (#0B0B0B), White (#FFFFFF),
+                  Dark Grey (#1A1A1A, #2D2D2D)
+   Fonts        : Oswald & Bebas Neue (headings), Poppins (body)
+   ============================================================= */
+
+
+/* ==========================
+   1. CSS CUSTOM PROPERTIES
+   (Easy to change colours / fonts in one place)
+   ========================== */
+:root {
+    /* --- Colours --- */
+    --clr-red:          #E63946;
+    --clr-red-dark:     #C62828;
+    --clr-black:        #0B0B0B;
+    --clr-dark-grey:    #1A1A1A;
+    --clr-mid-grey:     #2D2D2D;
+    --clr-light-grey:   #B0B0B0;
+    --clr-white:        #FFFFFF;
+
+    /* --- Fonts --- */
+    --font-heading:     'Oswald', sans-serif;
+    --font-display:     'Bebas Neue', sans-serif;
+    --font-body:        'Poppins', sans-serif;
+
+    /* --- Spacing --- */
+    --section-padding:  80px 20px;
+    --container-max:    1200px;
+
+    /* --- Transitions --- */
+    --transition-fast:  0.25s ease;
+    --transition-med:   0.4s ease;
+}
+
+
+/* ==========================
+   2. RESET & BASE STYLES
+   ========================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;       /* Smooth scroll for anchor links */
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--clr-white);
+    background-color: var(--clr-black);
+    line-height: 1.7;
+    overflow-x: hidden;            /* Prevent horizontal scroll */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* ==========================
+   3. HEADER / NAVBAR
+   ========================== */
+#main-header {
+    position: fixed;               /* Stays at top while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    background: transparent;       /* Transparent until user scrolls */
+    transition: background var(--transition-fast);
+}
+
+/* Solid background after scrolling 50px (added via JS) */
+.navbar.scrolled {
+    background: rgba(11, 11, 11, 0.95);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ---------- Logo ---------- */
+.logo {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    letter-spacing: 3px;
+    color: var(--clr-white);
+    transition: color var(--transition-fast);
+}
+
+.logo-accent {
+    color: var(--clr-red);         /* Red dot after "APEX" */
+}
+
+.logo:hover {
+    color: var(--clr-red);
+}
+
+
+/* ---------- Nav Links ---------- */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-item {
+    position: relative;            /* Needed for dropdown positioning */
+}
+
+.nav-link {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    color: var(--clr-light-grey);
+    transition: color var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--clr-red);
+}
+
+/* Small dropdown arrow */
+.arrow {
+    font-size: 0.65rem;
+    margin-left: 3px;
+    transition: transform var(--transition-fast);
+}
+
+
+/* ---------- Dropdown Menus ---------- */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: var(--clr-dark-grey);
+    border-top: 3px solid var(--clr-red);
+    border-radius: 0 0 6px 6px;
+    padding: 8px 0;
+    opacity: 0;                    /* Hidden by default */
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all var(--transition-fast);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Rotate arrow on hover */
+.dropdown:hover .arrow {
+    transform: rotate(180deg);
+}
+
+/* Individual dropdown items */
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 22px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--clr-light-grey);
+    transition: all var(--transition-fast);
+}
+
+.dropdown-menu li a:hover {
+    background: var(--clr-mid-grey);
+    color: var(--clr-red);
+    padding-left: 28px;            /* Subtle slide-right effect */
+}
+
+
+/* ---------- Hamburger Menu (Mobile) ---------- */
+.menu-toggle {
+    display: none;                 /* Hidden on desktop */
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    width: 28px;
+    height: 3px;
+    background: var(--clr-white);
+    border-radius: 2px;
+    transition: all var(--transition-fast);
+}
+
+/* Animate hamburger into an X when active */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+
+/* ==========================
+   4. HERO SECTION
+   ========================== */
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 120px 20px 80px;
+
+    /* Dark gradient background (can be replaced with an image later) */
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(230, 57, 70, 0.15) 0%, transparent 60%),
+        linear-gradient(160deg, var(--clr-black) 0%, var(--clr-dark-grey) 100%);
+}
+
+/* Optional overlay for when a background image is added later */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Hero text sits above the overlay */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6rem);  /* Responsive font size */
+    letter-spacing: 6px;
+    line-height: 1.1;
+    color: var(--clr-white);
+    margin-bottom: 20px;
+
+    /* Subtle entrance animation */
+    animation: fadeSlideUp 1s ease forwards;
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    font-weight: 300;
+    color: var(--clr-light-grey);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+
+    animation: fadeSlideUp 1s 0.2s ease forwards;
+    opacity: 0;
+}
+
+/* Highlighted text (the word "BODY" in the hero heading) */
+.highlight {
+    color: var(--clr-red);
+}
+
+
+/* ---------- Hero Buttons ---------- */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    animation: fadeSlideUp 1s 0.4s ease forwards;
+    opacity: 0;
+}
+
+/* Shared button styles */
+.btn {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 15px 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+/* Primary button — solid red */
+.btn-primary {
+    background: var(--clr-red);
+    color: var(--clr-white);
+    border: 2px solid var(--clr-red);
+}
+
+.btn-primary:hover {
+    background: var(--clr-red-dark);
+    border-color: var(--clr-red-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.35);
+}
+
+/* Outline button — transparent with white border */
+.btn-outline {
+    background: transparent;
+    color: var(--clr-white);
+    border: 2px solid var(--clr-white);
+}
+
+.btn-outline:hover {
+    background: var(--clr-white);
+    color: var(--clr-black);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+}
+
+
+/* ==========================
+   5. FEATURES / CARDS SECTION
+   ========================== */
+.features {
+    padding: var(--section-padding);
+    text-align: center;
+    background: var(--clr-dark-grey);
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--clr-light-grey);
+    margin-bottom: 60px;
+}
+
+
+/* ---------- Cards Grid ---------- */
+.cards-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+/* Individual Card */
+.card {
+    flex: 1 1 300px;
+    max-width: 360px;
+    background: var(--clr-mid-grey);
+    border-radius: 10px;
+    padding: 45px 30px 35px;
+    text-align: center;
+    transition: all var(--transition-med);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Red top-border accent on hover */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--clr-red);
+    transform: scaleX(0);          /* Hidden by default */
+    transition: transform var(--transition-med);
+}
+
+.card:hover::before {
+    transform: scaleX(1);          /* Slide in on hover */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(230, 57, 70, 0.2);
+}
+
+/* Card icon (emoji / symbol) */
+.card-icon {
+    font-size: 2.8rem;
+    color: var(--clr-red);
+    margin-bottom: 20px;
+}
+
+/* Card heading */
+.card-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+/* Card description */
+.card-text {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--clr-light-grey);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* "Learn More" link */
+.card-link {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--clr-red);
+    transition: all var(--transition-fast);
+}
+
+.card-link:hover {
+    color: var(--clr-white);
+    letter-spacing: 3px;           /* Subtle expand effect */
+}
+
+
+/* ==========================
+   6. FOOTER
+   ========================== */
+.footer {
+    padding: 30px 20px;
+    text-align: center;
+    background: var(--clr-black);
+    border-top: 1px solid var(--clr-mid-grey);
+}
+
+.footer p {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--clr-light-grey);
+    letter-spacing: 1px;
+}
+
+
+/* ==========================
+   7. ANIMATIONS (Keyframes)
+   ========================== */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================
+   8. RESPONSIVE DESIGN
+   (Tablet & Mobile Breakpoints)
+   ========================== */
+
+/* ---- Tablet: 768px and below ---- */
+@media (max-width: 768px) {
+
+    /* Show hamburger button */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Convert horizontal nav to vertical slide-in menu */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;              /* Off-screen by default */
+        width: 280px;
+        height: 100vh;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 30px 30px;
+        background: var(--clr-dark-grey);
+        gap: 0;
+        transition: right var(--transition-med);
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Slide menu in when "open" class is added (via JS) */
+    .nav-links.open {
+        right: 0;
+    }
+
+    .nav-link {
+        padding: 14px 0;
+        font-size: 1rem;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Mobile dropdown behaviour */
+    .dropdown-menu {
+        position: static;
+        background: var(--clr-mid-grey);
+        border-top: none;
+        border-left: 3px solid var(--clr-red);
+        border-radius: 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: max-height var(--transition-med);
+        box-shadow: none;
+        padding: 0;
+    }
+
+    /* Show dropdown when parent has "open" class (toggled via JS) */
+    .dropdown.open .dropdown-menu {
+        max-height: 300px;
+        padding: 8px 0;
+    }
+
+    /* Disable hover-based dropdown on mobile */
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        max-height: 0;
+        padding: 0;
+    }
+
+    .dropdown.open:hover .dropdown-menu {
+        max-height: 300px;
+        padding: 8px 0;
+    }
+
+    /* Hero adjustments */
+    .hero {
+        padding: 100px 20px 60px;
+    }
+
+    .hero-title {
+        letter-spacing: 3px;
+    }
+}
+
+/* ---- Small phones: 480px and below ---- */
+@media (max-width: 480px) {
+
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+
+    .card {
+        padding: 35px 20px 25px;
+    }
+}
