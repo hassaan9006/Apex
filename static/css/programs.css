@@ -1,0 +1,276 @@
+/* =============================================================
+   APEX FITNESS — PROGRAMS PAGE STYLES
+   Extends the main style.css design tokens.
+   ============================================================= */
+
+/* ==========================
+   PROGRAMS HERO
+   ========================== */
+.programs-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 160px 20px 80px;
+    background:
+        radial-gradient(ellipse at 30% 30%, rgba(230, 57, 70, 0.15) 0%, transparent 60%),
+        linear-gradient(180deg, var(--clr-black) 0%, var(--clr-dark-grey) 100%);
+}
+
+.programs-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.programs-hero .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: 5px;
+    margin-bottom: 16px;
+    animation: fadeSlideUp 0.8s ease forwards;
+}
+
+.programs-hero .hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    font-weight: 300;
+    color: var(--clr-light-grey);
+    line-height: 1.8;
+    animation: fadeSlideUp 0.8s 0.2s ease forwards;
+    opacity: 0;
+}
+
+/* ==========================
+   CARDIO SECTION
+   ========================== */
+.program-section {
+    padding: 80px 20px;
+    background: var(--clr-dark-grey);
+}
+
+.program-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.program-header .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.program-header .section-subtitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--clr-light-grey);
+}
+
+/* Machine Cards Grid */
+.machines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+.machine-card {
+    background: var(--clr-mid-grey);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-med);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.machine-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--clr-red);
+}
+
+.machine-content {
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.machine-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--clr-red);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform var(--transition-med);
+}
+
+.machine-card:hover::before {
+    transform: scaleY(1);
+}
+
+.machine-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(230, 57, 70, 0.2);
+}
+
+.machine-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--clr-red);
+}
+
+.machine-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    color: var(--clr-white);
+}
+
+.machine-desc {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--clr-light-grey);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.machine-usage {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 2px solid var(--clr-red);
+    margin-top: auto;
+}
+
+.machine-usage h4 {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--clr-white);
+    margin-bottom: 8px;
+}
+
+.machine-usage p {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--clr-light-grey);
+    line-height: 1.5;
+}
+
+
+/* ==========================
+   SCROLLING QUOTES (MARQUEE)
+   ========================== */
+.quotes-section {
+    padding: 60px 0;
+    background: var(--clr-black);
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.quotes-section::before,
+.quotes-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+}
+
+.quotes-section::before {
+    left: 0;
+    background: linear-gradient(to right, var(--clr-black), transparent);
+}
+
+.quotes-section::after {
+    right: 0;
+    background: linear-gradient(to left, var(--clr-black), transparent);
+}
+
+.quotes-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: scrollQuotes 35s linear infinite;
+}
+
+.quotes-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollQuotes {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.quote-box {
+    width: 400px;
+    background: var(--clr-dark-grey);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quote-icon {
+    color: var(--clr-red);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.quote-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--clr-white);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.quote-author {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--clr-red);
+    margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .machine-content {
+        padding: 25px 20px;
+    }
+    
+    .quote-box {
+        width: 300px;
+        padding: 25px;
+    }
+}
