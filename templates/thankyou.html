@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX Fitness — Thank You</title>
+    <meta name="description" content="Thank you for choosing APEX Fitness.">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Specific styles for this page to keep it beginner friendly -->
+    <style>
+        .thankyou-section {
+            min-height: calc(100vh - 160px);
+            /* Ensure it takes up most of the screen */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: var(--clr-bg);
+            color: var(--clr-white);
+        }
+
+        .thankyou-content {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .thankyou-icon {
+            font-size: 4rem;
+            color: var(--clr-primary);
+            margin-bottom: 1rem;
+        }
+
+        .thankyou-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .thankyou-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Component (Loaded from template) -->
+    {% include 'header.html' %}
+
+    <!-- Thank You Content -->
+    <section class="thankyou-section">
+        <div class="thankyou-content">
+            <div class="thankyou-icon"></div>
+            <h1 class="thankyou-title">Thank You!</h1>
+            <p class="thankyou-text">
+                Thanks for visiting our site and choosing APEX Fitness.
+                Your journey towards greatness has just begun! We are thrilled to have you
+                onboard and look forward to helping you crush your fitness goals.
+                Stay strong and keep moving forward!
+            </p>
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Return to Home</a>
+        </div>
+    </section>
+
+    <!-- Footer Component (Loaded from template) -->
+    {% include 'footer.html' %}
+</body>
+
+</html>

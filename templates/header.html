@@ -1,0 +1,48 @@
+<header id="main-header">
+    <nav id="navbar" class="navbar">
+        <a href="{{ url_for('index') }}" class="logo" id="logo">APEX<span class="logo-accent">.</span></a>
+        
+        <!-- CSS-only mobile menu toggle (or basic inline JS) -->
+        <input type="checkbox" id="menu-toggle-checkbox" style="display:none;">
+        <label for="menu-toggle-checkbox" class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </label>
+        
+        <ul class="nav-links" id="nav-links">
+            <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+            <li class="nav-item dropdown">
+                <a href="{{ url_for('booking') }}" class="nav-link dropdown-toggle">Booking <span class="arrow">&#9662;</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('booking') }}">View plans</a></li>
+                    <li><a href="{{ url_for('comparison') }}">Help me decide</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="{{ url_for('programs') }}" class="nav-link dropdown-toggle">Programs <span class="arrow">&#9662;</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('programs') }}#cardio">Cardio</a></li>
+                    <li><a href="{{ url_for('programs') }}#strength">Strength</a></li>
+                    <li><a href="{{ url_for('programs') }}#yoga">Yoga</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+<script>
+    // Tiny inline script for mobile menu and scroll effect
+    const menuToggle = document.getElementById('menu-toggle-checkbox');
+    const navLinks = document.getElementById('nav-links');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                navLinks.classList.add('open');
+            } else {
+                navLinks.classList.remove('open');
+            }
+        });
+    }
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+</script>

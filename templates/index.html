@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page Title -->
+    <title>APEX Fitness — Home</title>
+
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="APEX Fitness — Elevate your body, conquer your limits. Premium gym programs including Cardio, Strength Training, and Yoga.">
+
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+
+    <!-- Google Fonts: Oswald & Bebas Neue for headings, Poppins for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    {% include 'header.html' %}
+
+
+    <!-- ============================================================
+         HERO SECTION
+         Full-width, dark background, large heading, sub-text, 2 CTA buttons
+         ============================================================ -->
+    <section id="hero" class="hero">
+
+        <!-- Dark overlay sits on top of any future background image -->
+        <div class="hero-overlay"></div>
+
+        <!-- Hero text content -->
+        <div class="hero-content">
+            <h1 class="hero-title">ELEVATE YOUR <span class="highlight">BODY</span></h1>
+            <p class="hero-subtitle">
+                Push beyond your limits. Join APEX Fitness and unlock your full potential
+                with world-class trainers, state-of-the-art equipment, and a community
+                that never quits.
+            </p>
+
+            <!-- Two call-to-action buttons -->
+            <div class="hero-buttons">
+                <a href="{{ url_for('booking') }}" class="btn btn-primary" id="hero-btn-join">Join Now</a>
+                <a href="{{ url_for('programs') }}" class="btn btn-outline" id="hero-btn-programs">Our Programs</a>
+            </div>
+        </div>
+
+    </section>
+    <!-- End Hero -->
+
+
+    <!-- ============================================================
+         FEATURES SECTION
+         Three cards displayed side-by-side: Cardio, Strength, Yoga
+         ============================================================ -->
+    <section id="features" class="features">
+
+        <!-- Section heading -->
+        <h2 class="section-title">What We <span class="highlight">Offer</span></h2>
+        <p class="section-subtitle">World-class programs tailored to every fitness level</p>
+
+        <!-- Cards container -->
+        <div class="cards-container">
+
+            <!-- Card 1 — Cardio -->
+            <div class="card" id="card-cardio">
+                <div class="card-icon">&#9829;</div>  <!-- Heart icon for cardio -->
+                <h3 class="card-title">Cardio</h3>
+                <p class="card-text">
+                    High-energy sessions designed to torch calories, boost endurance,
+                    and keep your heart in peak condition.
+                </p>
+                <a href="{{ url_for('programs') }}#cardio" class="card-link">Learn More &rarr;</a>
+            </div>
+
+            <!-- Card 2 — Strength -->
+            <div class="card" id="card-strength">
+                <div class="card-icon">&#9883;</div>  <!-- Star icon for strength -->
+                <h3 class="card-title">Strength</h3>
+                <p class="card-text">
+                    Build raw power and sculpt lean muscle with guided strength programs
+                    for beginners to advanced lifters.
+                </p>
+                <a href="{{ url_for('programs') }}#strength" class="card-link">Learn More &rarr;</a>
+            </div>
+
+            <!-- Card 3 — Yoga -->
+            <div class="card" id="card-yoga">
+                <div class="card-icon">&#9775;</div>  <!-- Yin-yang icon for yoga -->
+                <h3 class="card-title">Yoga</h3>
+                <p class="card-text">
+                    Find your balance. Our yoga classes improve flexibility, reduce stress,
+                    and build a stronger mind-body connection.
+                </p>
+                <a href="{{ url_for('programs') }}#yoga" class="card-link">Learn More &rarr;</a>
+            </div>
+
+        </div>
+        <!-- End cards-container -->
+
+    </section>
+    <!-- End Features -->
+
+
+    <!-- ============================================================
+         BMI CALCULATOR SECTION
+         ============================================================ -->
+    <section id="bmi-calculator" class="bmi-section">
+        <h2 class="section-title">Calculate Your <span class="highlight">BMI</span></h2>
+        <p class="section-subtitle">Find out your Body Mass Index to track your health progress.</p>
+        
+        <div class="bmi-container">
+            <div class="bmi-form">
+                <div class="form-group">
+                    <label for="bmi-weight">Weight (kg)</label>
+                    <input type="number" id="bmi-weight" placeholder="e.g. 70" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="bmi-height">Height (cm)</label>
+                    <input type="number" id="bmi-height" placeholder="e.g. 175" class="form-input">
+                </div>
+                <a href="{{ url_for('bmi') }}" class="btn btn-primary" style="text-decoration:none; display:inline-block; text-align:center; margin-top: 15px;">Go to BMI Calculator</a>
+            </div>
+            
+            <div class="bmi-result-card">
+                <h3>Your Result</h3>
+                <div id="bmi-value" class="bmi-score">--</div>
+                <div id="bmi-status" class="bmi-status">Enter your details</div>
+                <div class="bmi-scale">
+                    <span>Underweight (&lt;18.5)</span>
+                    <span>Normal (18.5-24.9)</span>
+                    <span>Overweight (25-29.9)</span>
+                    <span>Obese (30+)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    {% include 'footer.html' %}
+</body>
+</html>

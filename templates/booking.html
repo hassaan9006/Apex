@@ -7,64 +7,20 @@
     <title>APEX Fitness — Book Now</title>
     <meta name="description"
         content="Book your gym session at APEX Fitness. Choose a 1-day pass or monthly membership with online or cash payment options.">
-    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/booking.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/booking.css') }}">
 </head>
 
 <body>
 
     <!-- HEADER / NAVIGATION -->
-    <header id="main-header">
-        <nav id="navbar" class="navbar">
-            <a href="../index.html" class="logo" id="logo">APEX<span class="logo-accent">.</span></a>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-                <li class="nav-item dropdown">
-                    <a href="about.html" class="nav-link dropdown-toggle">About <span class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="about.html#our-story">Our Story</a></li>
-                        <li><a href="about.html#mission">Mission</a></li>
-                        <li><a href="about.html#team">Our Team</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="booking.html" class="nav-link active dropdown-toggle">Booking <span
-                            class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="booking.html">View plans</a></li>
-                        <li><a href="comparison.html">Help me decide</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="programs.html" class="nav-link dropdown-toggle">Programs <span
-                            class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="programs.html#cardio">Cardio</a></li>
-                        <li><a href="programs.html#strength">Strength</a></li>
-                        <li><a href="programs.html#yoga">Yoga</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="gallery.html" class="nav-link dropdown-toggle">Gallery <span
-                            class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="gallery.html#gym-photos">Gym Photos</a></li>
-                        <li><a href="gallery.html#events">Events</a></li>
-                        <li><a href="gallery.html#transformations">Transformations</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    {% include 'header.html' %}
 
     <!-- HERO -->
     <section class="booking-hero">
@@ -117,199 +73,55 @@
     <section id="booking-form" class="form-section">
         <div class="form-wrapper">
             <h2 class="section-title">Complete Your <span class="highlight">Booking</span></h2>
-            <p class="section-subtitle" id="form-plan-label">1-Day Pass — Rs. 500</p>
-
-            <!-- Progress Steps -->
-            <div class="form-steps" id="form-steps">
-                <div class="step-indicator active" data-step="1">
-                    <div class="step-circle">1</div>
-                    <span class="step-label">Details</span>
+            
+            <form method="POST" action="{{ url_for('booking') }}" class="backend-booking-form">
+                <div class="form-group">
+                    <label class="form-label" for="plan">Select Plan *</label>
+                    <select class="form-input" id="plan" name="plan" required style="padding: 1rem; width: 100%; border-radius: 4px; border: 1px solid var(--clr-gray); background: var(--clr-dark); color: var(--clr-white);">
+                        <option value="day">1-Day Pass — Rs. 500</option>
+                        <option value="monthly">Monthly Membership — Rs. 5,000</option>
+                    </select>
                 </div>
-                <div class="step-indicator" data-step="2">
-                    <div class="step-circle">2</div>
-                    <span class="step-label">Payment</span>
-                </div>
-                <div class="step-indicator" data-step="3">
-                    <div class="step-circle">3</div>
-                    <span class="step-label">Confirm</span>
-                </div>
-            </div>
-
-            <!-- STEP 1: Personal Information -->
-            <div class="form-step active" id="step-1">
+                
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label" for="first-name">First Name *</label>
-                        <input type="text" class="form-input" id="first-name" placeholder="John" required>
-                        <span class="error-message">First name is required</span>
+                        <label class="form-label" for="first_name">First Name *</label>
+                        <input type="text" class="form-input" id="first_name" name="first_name" placeholder="John" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="last-name">Last Name *</label>
-                        <input type="text" class="form-input" id="last-name" placeholder="Doe" required>
-                        <span class="error-message">Last name is required</span>
+                        <label class="form-label" for="last_name">Last Name *</label>
+                        <input type="text" class="form-input" id="last_name" name="last_name" placeholder="Doe" required>
                     </div>
                 </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address *</label>
+                        <input type="email" class="form-input" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number *</label>
+                        <input type="tel" class="form-input" id="phone" name="phone" placeholder="03XX-XXXXXXX" required>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label class="form-label" for="email">Email Address *</label>
-                    <input type="email" class="form-input" id="email" placeholder="john@example.com" required>
-                    <span class="error-message">Please enter a valid email</span>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="phone">Phone Number *</label>
-                    <input type="tel" class="form-input" id="phone" placeholder="03XX-XXXXXXX" required>
-                    <span class="error-message">Please enter a valid phone number</span>
+                    <label class="form-label" for="payment_method">Payment Method *</label>
+                    <select class="form-input" id="payment_method" name="payment_method" required style="padding: 1rem; width: 100%; border-radius: 4px; border: 1px solid var(--clr-gray); background: var(--clr-dark); color: var(--clr-white);">
+                        <option value="cash">Cash Payment (Pay at Gym)</option>
+                        <option value="online">Online Payment (Card)</option>
+                    </select>
                 </div>
 
-                <!-- Monthly-only fields -->
-                <div id="monthly-fields" style="display:none;">
-                    <div class="form-group">
-                        <label class="form-label" for="address">House Address *</label>
-                        <input type="text" class="form-input" id="address" placeholder="House #, Street, Area">
-                        <span class="error-message">Address is required for membership</span>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="city">City *</label>
-                            <input type="text" class="form-input" id="city" placeholder="Lahore">
-                            <span class="error-message">City is required</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="cnic">CNIC Number *</label>
-                            <input type="text" class="form-input" id="cnic" placeholder="XXXXX-XXXXXXX-X">
-                            <span class="error-message">CNIC is required for membership</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="emergency-contact">Emergency Contact *</label>
-                        <input type="tel" class="form-input" id="emergency-contact" placeholder="03XX-XXXXXXX">
-                        <span class="error-message">Emergency contact is required</span>
-                    </div>
+                <div class="form-nav" style="margin-top: 30px;">
+                    <button type="submit" class="btn-form btn-submit">Confirm Booking ✓</button>
                 </div>
-
-                <div class="form-nav">
-                    <button class="btn-form btn-next" id="btn-to-step2">Next Step &rarr;</button>
-                </div>
-            </div>
-
-            <!-- STEP 2: Payment Method -->
-            <div class="form-step" id="step-2">
-                <h3
-                    style="font-family:var(--font-heading);font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;text-align:center;color:var(--clr-white);">
-                    Select Payment Method</h3>
-
-                <div class="payment-methods">
-                    <label class="payment-option" id="pay-online">
-                        <input type="radio" name="payment" value="online">
-                        <span class="payment-icon">💳</span>
-                        <span class="payment-label">Online Payment</span>
-                        <span class="payment-desc">Pay securely via card</span>
-                    </label>
-                    <label class="payment-option" id="pay-cash">
-                        <input type="radio" name="payment" value="cash">
-                        <span class="payment-icon">💵</span>
-                        <span class="payment-label">Cash Payment</span>
-                        <span class="payment-desc">Pay at the gym counter</span>
-                    </label>
-                </div>
-
-                <!-- Online Payment Fields (hidden by default) -->
-                <div id="online-fields" style="display:none;">
-                    <div class="form-group">
-                        <label class="form-label" for="card-name">Name on Card *</label>
-                        <input type="text" class="form-input" id="card-name" placeholder="JOHN DOE">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="card-number">Card Number *</label>
-                        <input type="text" class="form-input" id="card-number" placeholder="XXXX XXXX XXXX XXXX"
-                            maxlength="19">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="card-expiry">Expiry *</label>
-                            <input type="text" class="form-input" id="card-expiry" placeholder="MM/YY" maxlength="5">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="card-cvv">CVV *</label>
-                            <input type="text" class="form-input" id="card-cvv" placeholder="***" maxlength="3">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-nav">
-                    <button class="btn-form btn-back" id="btn-back-step1">&larr; Back</button>
-                    <button class="btn-form btn-next" id="btn-to-step3">Review Order &rarr;</button>
-                </div>
-            </div>
-
-            <!-- STEP 3: Review & Confirm -->
-            <div class="form-step" id="step-3">
-                <div class="order-summary" id="order-summary">
-                    <!-- Populated by JS -->
-                </div>
-                <div class="form-nav">
-                    <button class="btn-form btn-back" id="btn-back-step2">&larr; Back</button>
-                    <button class="btn-form btn-submit" id="btn-confirm">Confirm Booking ✓</button>
-                </div>
-            </div>
+            </form>
         </div>
     </section>
 
-    <!-- RECEIPT MODAL (for Cash Payment) -->
-    <div class="receipt-overlay" id="receipt-modal">
-        <div class="receipt-card" id="receipt-card">
-            <div class="receipt-header">
-                <div class="receipt-logo">APEX<span>.</span></div>
-                <div class="receipt-tagline">Fitness &amp; Wellness</div>
-            </div>
-            <div class="receipt-status">
-                <span class="receipt-status-icon">🧾</span>
-                <div class="receipt-status-text">Cash Payment — Pending</div>
-            </div>
-            <div class="receipt-divider"></div>
-            <div class="receipt-body" id="receipt-body">
-                <!-- Populated by JS -->
-            </div>
-            <div class="receipt-divider"></div>
-            <div class="receipt-id">
-                <span id="receipt-id-text">Booking #APX-000000</span>
-            </div>
-            <div class="receipt-note">
-                <p>Please show this receipt at the APEX Fitness front desk and pay the amount in cash. Your booking will
-                    be confirmed upon payment.</p>
-            </div>
-            <div class="receipt-actions">
-                <button class="btn-form btn-save" id="btn-save-receipt">📥 Save to Gallery</button>
-                <button class="btn-form btn-done" id="btn-done">Done ✓</button>
-            </div>
-        </div>
-    </div>
-
     <!-- FOOTER -->
-    <footer id="main-footer" class="footer">
-        <p>&copy; 2026 APEX Fitness. All rights reserved.</p>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="../static/js/booking.js"></script>
-
-    <!-- Shared nav scripts -->
-    <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            menuToggle.classList.toggle('active');
-        });
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
-        document.querySelectorAll('.dropdown').forEach(d => {
-            d.querySelector('.dropdown-toggle').addEventListener('click', e => {
-                if (window.innerWidth <= 768) { e.preventDefault(); d.classList.toggle('open'); }
-            });
-        });
-    </script>
+    {% include 'footer.html' %}
 </body>
 
 </html>

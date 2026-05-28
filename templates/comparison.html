@@ -7,64 +7,20 @@
     <title>APEX Fitness — Help Me Decide</title>
     <meta name="description"
         content="Compare APEX Fitness plans. See the difference between a 1-Day Pass and a Monthly Membership to find the perfect fit for you.">
-    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/comparison.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/comparison.css') }}">
 </head>
 
 <body>
 
     <!-- HEADER / NAVIGATION -->
-    <header id="main-header">
-        <nav id="navbar" class="navbar">
-            <a href="../index.html" class="logo" id="logo">APEX<span class="logo-accent">.</span></a>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-                <li class="nav-item dropdown">
-                    <a href="about.html" class="nav-link dropdown-toggle">About <span class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="about.html#our-story">Our Story</a></li>
-                        <li><a href="about.html#mission">Mission</a></li>
-                        <li><a href="about.html#team">Our Team</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="booking.html" class="nav-link active dropdown-toggle">Booking <span
-                            class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="booking.html">View plans</a></li>
-                        <li><a href="comparison.html">Help me decide</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="programs.html" class="nav-link dropdown-toggle">Programs <span
-                            class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="programs.html#cardio">Cardio</a></li>
-                        <li><a href="programs.html#strength">Strength</a></li>
-                        <li><a href="programs.html#yoga">Yoga</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="gallery.html" class="nav-link dropdown-toggle">Gallery <span
-                            class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="gallery.html#gym-photos">Gym Photos</a></li>
-                        <li><a href="gallery.html#events">Events</a></li>
-                        <li><a href="gallery.html#transformations">Transformations</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    {% include 'header.html' %}
 
     <!-- HERO -->
     <section class="comparison-hero">
@@ -128,8 +84,8 @@
                     </tr>
                     <tr class="table-footer">
                         <td></td>
-                        <td><a href="booking.html" class="btn-book">Choose 1-Day</a></td>
-                        <td><a href="booking.html" class="btn-book btn-book-primary">Choose Monthly</a></td>
+                        <td><a href="{{ url_for('booking') }}" class="btn-book">Choose 1-Day</a></td>
+                        <td><a href="{{ url_for('booking') }}" class="btn-book btn-book-primary">Choose Monthly</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -137,28 +93,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer id="main-footer" class="footer">
-        <p>&copy; 2026 APEX Fitness. All rights reserved.</p>
-    </footer>
-
-    <!-- Shared nav scripts -->
-    <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            menuToggle.classList.toggle('active');
-        });
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
-        document.querySelectorAll('.dropdown').forEach(d => {
-            d.querySelector('.dropdown-toggle').addEventListener('click', e => {
-                if (window.innerWidth <= 768) { e.preventDefault(); d.classList.toggle('open'); }
-            });
-        });
-    </script>
+    {% include 'footer.html' %}
 </body>
 
 </html>
